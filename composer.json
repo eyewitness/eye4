@@ -1,0 +1,33 @@
+{
+    "name": "eyewitness/eye",
+    "description": "Eyewitness.io client for Laravel 4.2 applications",
+    "keywords": [
+        "laravel 4.2",
+        "queue",
+        "cron",
+        "monitor",
+        "eyewitness"
+    ],
+    "homepage": "https://github.com/eyewitness/eye4",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Laurence",
+            "email": "laurence@eyewitness.io"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*",
+        "guzzlehttp/guzzle": "5.*|6.*"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Eyewitness\\Eye\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
