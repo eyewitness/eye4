@@ -2,6 +2,8 @@
 
 ## Eyewitness.io package for Laravel 4.2 applications
 
+**Please note this package is newly released and still in beta testing**
+
 <a href="https://eyewitness.io">Eyewitness.io</a> is a monitoring and application analytic service built specifically for Laravel. Never miss a silent failure, and be the first to know how your applications are actually performing. Monitor your queues, schedulers/cron, email, logs, security and every part of your application.
 
 ### Installation
@@ -28,11 +30,23 @@ Alternatively you can just copy and paste the `app_token` and `secret_key` yours
 
 ### Setup
 
-Running `php artisan eyewitness:install` will actually setup almost everything for you. It will automatically start monitoring your default queue, know what cron jobs need to run, start emailing testing etc.
+Running `php artisan eyewitness:install` will actually setup almost everything for you. It will automatically start monitoring your default queue, start emailing testing etc.
 
 In the `app/config/packages/eyewitness/eye/config.php` file there are a number of options to disable certain checks (for example, if you dont use email or queues in your application).
 
-The only config option some people need to change is `queue_tube_list`. If you run multiple queue tubes (using `--tube`) - then you should add the other queue tubes you want monitored here.
+There is one important difference between our Laravel 4 and Laravel 5 package. In Laravel 4, because there is no built in cron scheduler, you need to add the cron/commands you would like monitor in your Eyewitness `config.php` file. Dont worry - it is very quick and easy:
+
+```
+// This is an example of what you might put:
+
+scheduled_monitor_list' => ['backup:run' => '0 * * * *',
+                            'weekly:report' => '5 7 * * 2',
+                            'another:example' => '4 1 3 * *'],
+```
+
+Once those commands run - they will be automatically added to your Eyewitness dashboard and be monitored.
+
+The only other config option some people need to change is `queue_tube_list`. If you run multiple queue tubes (using `--tube`) - then you should add the other queue tubes you want monitored here.
 
 ### Version
 

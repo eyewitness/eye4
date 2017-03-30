@@ -60,6 +60,34 @@ return [
 
     /*
      |--------------------------------------------------------------------------
+     | Eyewitness.io Scheduler Task List
+     |--------------------------------------------------------------------------
+     |
+     | As Laravel 4 has no default built in scheduler, there are many ways people
+     | schedule their crons (often using either crontab or a package). To have
+     | Eyewitness.io monitor specific cron jobs for your applications - simply
+     | add the artisan command and cron schedule to the array below.
+     |
+     | There is no need to modify your actual command to ping or do anything. We
+     | will automatically monitor the commands you put into the array without
+     | any further changes to your application.
+     |
+     | This is an example of what you might put:
+     |
+     | 'scheduled_monitor_list' => ['backup:run' => '0 * * * *',
+     |                              'weekly:report' => '5 7 * * 2',
+     |                              'another:example' => '4 1 3 * *'],
+     |
+     | Not sure the best option for your application? Send us a quick email
+     | at 'support@eyewitness.io' and we'll be happy to help.
+     |
+     */
+
+     'scheduled_monitor_list' => [],
+
+
+    /*
+     |--------------------------------------------------------------------------
      | Eyewitness.io Queue Tube List
      |--------------------------------------------------------------------------
      |

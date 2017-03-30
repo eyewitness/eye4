@@ -3,6 +3,7 @@
 namespace Eyewitness\Eye;
 
 use Eyewitness\Eye\Http\Middleware\CaptureRequest;
+use Symfony\Component\Console\Input\ArgvInput;
 use Eyewitness\Eye\Commands\InstallCommand;
 use Eyewitness\Eye\Commands\DownCommand;
 use Eyewitness\Eye\Commands\WorkCommand;
@@ -10,6 +11,7 @@ use Illuminate\Support\ServiceProvider;
 use Eyewitness\Eye\Commands\UpCommand;
 use Eyewitness\Eye\Queue\Worker;
 use Config;
+use Event;
 use Queue;
 use Route;
 use Log;
@@ -50,7 +52,7 @@ class EyeServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-        $this->app->singleton(Eyewitness\Eye\Eye::class);
+        $this->app->singleton('Eyewitness\Eye\Eye');
 	}
 
 	/**
@@ -107,9 +109,28 @@ class EyeServiceProvider extends ServiceProvider {
      */
     protected function loadConsole()
     {
+        $this->loadSchedulerMonitor();
         $this->loadInstallCommand();
         $this->loadMaintenanceMonitor();
         $this->loadQueueMonitor();
+    }
+
+    /**
+     * Load the scheduler monitor.
+     *
+     * @return void
+     */
+    protected function loadSchedulerMonitor()
+    {
+        if (Config::get('eye::monitor_scheduler')) {
+            Event::listen('artisan.start', function($app) {
+                app(Eye::class)->scheduler()->inspectCommand($_SERVER['argv']);
+            });
+
+            $this->app->shutdown(function() {
+                app(Eye::class)->scheduler()->trackCommand();
+            });
+        }
     }
 
     /**
@@ -122,9 +143,10 @@ class EyeServiceProvider extends ServiceProvider {
         $this->app->bind('eye::eyewitness:install', function($app) {
             return new InstallCommand();
         });
-        $this->commands(array(
+
+        $this->commands([
             'eye::eyewitness:install'
-        ));
+        ]);
     }
 
     /**
