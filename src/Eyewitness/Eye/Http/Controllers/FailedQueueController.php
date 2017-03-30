@@ -32,7 +32,7 @@ class FailedQueueController extends Controller
      */
     public function __construct(Eye $eye, Request $request)
     {
-        $this->beforeFilter('eyewitness_log_queue');
+        $this->beforeFilter('eyewitness_queue_route');
 
         $this->request = $request;
 
