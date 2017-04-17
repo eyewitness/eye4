@@ -2,8 +2,6 @@
 
 ## Eyewitness.io package for Laravel 4.2 applications
 
-**Please note this package is newly released and still in beta testing**
-
 <a href="https://eyewitness.io">Eyewitness.io</a> is a monitoring and application analytic service built specifically for Laravel. Never miss a silent failure, and be the first to know how your applications are actually performing. Monitor your queues, schedulers/cron, email, logs, security and every part of your application.
 
 ### Installation
@@ -44,7 +42,7 @@ scheduled_monitor_list' => ['backup:run' => '0 * * * *',
                             'another:example' => '4 1 3 * *'],
 ```
 
-Once those commands run - they will be automatically added to your Eyewitness dashboard and be monitored.
+Once those commands run - they will be automatically added to your Eyewitness dashboard on the next cycle and be monitored automatically.
 
 The only other config option some people need to change is `queue_tube_list`. If you run multiple queue tubes (using `--tube`) - then you should add the other queue tubes you want monitored here.
 
