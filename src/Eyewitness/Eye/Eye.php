@@ -7,10 +7,11 @@ use Eyewitness\Eye\Witness\Database;
 use Eyewitness\Eye\Witness\Request;
 use Eyewitness\Eye\Witness\Server;
 use Eyewitness\Eye\Witness\Queue;
+use Eyewitness\Eye\Api\LatestApi;
+use Eyewitness\Eye\Api\LegacyApi;
 use Eyewitness\Eye\Witness\Email;
 use Eyewitness\Eye\Witness\Disk;
 use Eyewitness\Eye\Witness\Log;
-use Eyewitness\Eye\Api;
 use Config;
 
 class Eye
@@ -272,9 +273,24 @@ class Eye
     public function api()
     {
         if (is_null($this->api)) {
-            $this->api = app(Api::class);
+            if ($this->isRunningOldGuzzle()) {
+                $this->api = app(LegacyApi::class);
+            } else {
+                $this->api = app(LatestApi::class);
+            }
         }
 
         return $this->api;
+    }
+
+    /**
+     * Check what version of Guzzle is available to allow
+     * us to simulatenously support Guzzle 3 through to 6
+     *
+     * @return boolean
+     */
+    protected function isRunningOldGuzzle()
+    {
+        return class_exists('\Guzzle\Http\Client');
     }
 }

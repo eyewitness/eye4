@@ -1,7 +1,7 @@
 <?php
 
 use GuzzleHttp\Psr7\Response;
-use Eyewitness\Eye\Api;
+use Eyewitness\Eye\Api\Api;
 use GuzzleHttp\Client;
 
 class ApiTest extends TestCase

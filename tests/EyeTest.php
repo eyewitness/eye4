@@ -23,7 +23,7 @@ class EyeTest extends TestCase
         $this->assertInstanceOf(Eyewitness\Eye\Witness\Email::class, $this->eye->email());
         $this->assertInstanceOf(Eyewitness\Eye\Witness\Disk::class, $this->eye->disk());
         $this->assertInstanceOf(Eyewitness\Eye\Witness\Log::class, $this->eye->log());
-        $this->assertInstanceOf(Eyewitness\Eye\Api::class, $this->eye->api());
+        $this->assertInstanceOf(Eyewitness\Eye\Api\Api::class, $this->eye->api());
     }
 
     public function testConstsAreSet()
