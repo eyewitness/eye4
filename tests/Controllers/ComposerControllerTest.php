@@ -1,6 +1,6 @@
 <?php
 
-use Eyewitness\Eye\Api;
+use Eyewitness\Eye\Api\LegacyApi;
 
 class ComposerControllerTest extends TestCase
 {
@@ -10,8 +10,8 @@ class ComposerControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->eyeapi = Mockery::mock(Api::class);
-        $this->app->instance(Api::class, $this->eyeapi);
+        $this->eyeapi = Mockery::mock(LegacyApi::class);
+        $this->app->instance(LegacyApi::class, $this->eyeapi);
 
         $this->app['router']->enableFilters();
     }

@@ -32,7 +32,7 @@ class EyeServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('eyewitness/eye');
+		$this->package('eyewitness/eye4', 'eye');
 
         $this->loadRoutes();
         $this->loadLogTracking();

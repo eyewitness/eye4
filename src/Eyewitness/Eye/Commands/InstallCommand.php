@@ -44,7 +44,7 @@ class InstallCommand extends Command
             return;
         }
 
-        $this->call('config:publish', ['package' => 'eyewitness/eye']);
+        $this->call('config:publish', ['package' => 'eyewitness/eye4']);
 
         try {
             $this->setDefaultQueueConfig();
@@ -222,9 +222,9 @@ class InstallCommand extends Command
      */
     protected function modifyConfigFile($placeholder, $config)
     {
-        $config_file = file_get_contents(app_path('/config/packages/eyewitness/eye/config.php'));
+        $config_file = file_get_contents(app_path('config/packages/eyewitness/eye4/config.php'));
         $config_file = str_replace($placeholder, $config, $config_file);
-        file_put_contents(app_path('/config/packages/eyewitness/eye/config.php'), $config_file);
+        file_put_contents(app_path('config/packages/eyewitness/eye4/config.php'), $config_file);
     }
 
     /**

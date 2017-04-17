@@ -31,9 +31,11 @@ class LegacyApi extends Api
      */
     public function install($setup)
     {
-        $this->headers['json'] = $setup;
+        $this->headers['content-type'] = 'application/json';
 
-        $response = $this->client->post($this->api.'/install', $this->headers)->send();
+        $response = $this->client->post($this->api.'/install', $this->headers)
+                                 ->setBody(json_encode($setup))
+                                 ->send();
 
         return json_decode($response->getBody());
     }
@@ -74,13 +76,15 @@ class LegacyApi extends Api
             return;
         }
 
+        $this->headers['content-type'] = 'application/json';
+
         $data['app_token'] = Config::get('eye::app_token');
         $data['secret_key'] = Config::get('eye::secret_key');
 
-        $this->headers['json'] = $data;
-
         try {
-            $this->client->post($this->api."/$route", $this->headers)->send();
+            $this->client->post($this->api."/$route", $this->headers)
+                         ->setBody(json_encode($data))
+                         ->send();
         } catch (Exception $e) {
             //
         }

@@ -1,10 +1,10 @@
 <?php
 
+use Eyewitness\Eye\Api\LatestApi;
 use GuzzleHttp\Psr7\Response;
-use Eyewitness\Eye\Api\Api;
 use GuzzleHttp\Client;
 
-class ApiTest extends TestCase
+class LatestApiTest extends TestCase
 {
     protected $api;
 
@@ -19,7 +19,7 @@ class ApiTest extends TestCase
         $this->guzzle = Mockery::mock(GuzzleHttp\Client::class);
         $this->app->instance(GuzzleHttp\Client::class, $this->guzzle);
 
-        $this->api = new Api;
+        $this->api = new LatestApi;
         $this->response = new Response(200, ['Content-Type' => 'application/json'], json_encode(['ok']));
     }
 
