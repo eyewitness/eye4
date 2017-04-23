@@ -190,7 +190,6 @@ class EyeServiceProvider extends ServiceProvider {
     protected function registerFailingQueueHandler()
     {
         Queue::failing(function($connection, $job, $data) {
-            Log::info('logged failing');
             app(Eye::class)->api()->sendQueueFailingPing($connection, $data['job'], $job->getQueue());
         });
     }
