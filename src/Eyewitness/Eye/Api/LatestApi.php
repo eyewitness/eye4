@@ -46,7 +46,12 @@ class LatestApi extends Api
     public function runComposerLockCheck()
     {
         $this->headers['headers'] = ['Accept' => 'application/json'];
-        $this->headers['multipart'] = [['name' => 'lock', 'contents' => fopen(Config::get('eye::composer_lock_file_location'), 'r')]];
+
+        if ($this->isRunningGuzzle5()) {
+            $this->headers['body'] = ['lock' => fopen(Config::get('eye::composer_lock_file_location'), 'r')];
+        } else {
+            $this->headers['multipart'] = [['name' => 'lock', 'contents' => fopen(Config::get('eye::composer_lock_file_location'), 'r')]];
+        }
 
         $response = null;
 
@@ -83,5 +88,15 @@ class LatestApi extends Api
         } catch (Exception $e) {
             //
         }
+    }
+
+    /**
+     * Determine if we are runing Guzzle 5 or 6 to provide dual support in the one package.
+     *
+     * @return bool
+     */
+    protected function isRunningGuzzle5()
+    {
+        return ($this->client::VERSION[0] == "5");
     }
 }
