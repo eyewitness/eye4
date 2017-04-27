@@ -37,9 +37,9 @@ There is one important difference between our Laravel 4 and Laravel 5 package. I
 ```
 // This is an example of what you might put:
 
-scheduled_monitor_list' => ['backup:run' => '0 * * * *',
-                            'weekly:report' => '5 7 * * 2',
-                            'another:example' => '4 1 3 * *'],
+'scheduled_monitor_list' => ['backup:run' => '0 * * * *',
+                             'weekly:report' => '5 7 * * 2',
+                             'another:example' => '4 1 3 * *'],
 ```
 
 Once those commands run - they will be automatically added to your Eyewitness dashboard on the next cycle and be monitored automatically.
@@ -48,7 +48,7 @@ The only other config option some people need to change is `queue_tube_list`. If
 
 ### Version
 
-This package current supports Laravel `4.2` versions.
+This package is specifically for Laravel `4.2`.
 
 If you need to monitor a Laravel 5 application you should use [the Eyewitness Laravel 5 package](https://github.com/eyewitness/eye)
 
