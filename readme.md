@@ -2,7 +2,7 @@
 
 ## Eyewitness.io package for Laravel 4.2 applications
 
-<a href="https://eyewitness.io">Eyewitness.io</a> is a monitoring and application analytic service built specifically for Laravel. Never miss a silent failure, and be the first to know how your applications are actually performing. Monitor your queues, schedulers/cron, email, logs, security and every part of your application.
+<a href="https://eyewitness.io">Eyewitness.io</a> is a monitoring and application analytic solution focused specifically for Laravel. Know how your applications are *actually* performing. Monitor uptime, queues, cron schedules, email, logs, security, SSL, DNS and much more. Super simple installation - be up and running in just 90 seconds...
 
 ### Installation
 
