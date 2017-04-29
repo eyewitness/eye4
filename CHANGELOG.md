@@ -1,5 +1,11 @@
 # Release Notes
 
+## Unreleased
+
+### Changed
+- Made installation simplier.
+
+
 ## v1.0.2 (2017-04-24)
 
 ### Added
