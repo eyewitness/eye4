@@ -46,7 +46,7 @@ class InstallCommand extends Command
 
         $this->displayInitialInstallMessage();
 
-        $this->call('config:publish', ['package' => 'eyewitness/eye4']);
+        // $this->call('config:publish', ['package' => 'eyewitness/eye4']);
 
         try {
             $this->setDefaultQueueConfig();
@@ -127,8 +127,8 @@ class InstallCommand extends Command
         $this->info(' ');
         $this->info('Success! Your Laravel application has been configured and is now being monitored by Eyewitness.io!');
         $this->info(' ');
-        $this->info('   App Token: '.config('eyewitness.app_token'));
-        $this->info('   Secret Key: '.config('eyewitness.secret_key'));
+        $this->info('   App Token: '.Config::get('eye::app_token'));
+        $this->info('   Secret Key: '.Config::get('eye::secret_key'));
         $this->info(' ');
         $this->info('Optional: You can provide your email address now, and we will send you an email with the "app_token" and "secret_key" included. This email will be sent by our email server, so it is ok if you do not have email configured on this server. No spam, we promise!');
         $this->info(' ');
@@ -151,7 +151,7 @@ class InstallCommand extends Command
                 $this->info(' ');
                 $this->info('Now that your package is installed - please head to https://eyewitness.io and login to view your application monitor. You will need your "app_token" and "secret_key" to access your server on the website.');
                 $this->info(' ');
-                $this->info('You can copy and paste these from above. Or you can get them from your '.app_path('/config/packages/eyewitness/eye/config.php').' file as well.');
+                $this->info('You can copy and paste these from above. Or you can get them from your '.app_path('/config/packages/eyewitness/eye4/config.php').' file as well.');
                 return;
             }
 
