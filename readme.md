@@ -52,6 +52,10 @@ This package is specifically for Laravel `4.2`.
 
 If you need to monitor a Laravel 5 application you should use [the Eyewitness Laravel 5 package](https://github.com/eyewitness/eye)
 
+### Documentation & Support
+
+Please visit our help center and documentation page if you need more assistance: [http://docs.eyewitness.io](http://docs.eyewitness.io)
+
 ### Security Vulnerabilites
 
 If you discover a security vulnerability within this pacakge, please email security@eyewitness.io instead of using the issue tracker. All security vulnerabilities will be promptly addressed.
