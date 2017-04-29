@@ -3,7 +3,7 @@
 ## Unreleased
 
 ### Changed
-- Made installation simplier.
+- Made installation configuration simplier.
 
 
 ## v1.0.2 (2017-04-24)
