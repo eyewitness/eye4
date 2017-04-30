@@ -1,6 +1,6 @@
 # Release Notes
 
-## Unreleased
+## v1.1.0 (2017-04-30)
 
 ### Changed
 - Made installation configuration simplier.
