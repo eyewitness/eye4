@@ -4,6 +4,8 @@
 
 ### Changed
 - Made installation configuration simplier.
+- Include current application environment when polling.
+- Include eyewitness config setup when polling.
 
 
 ## v1.0.2 (2017-04-24)

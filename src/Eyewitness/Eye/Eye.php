@@ -126,6 +126,8 @@ class Eye
         $data['server_stats'] = $this->server()->check();
 
         $data['eyewitness_version'] = $this->version();
+        $data['application_environment'] = app()->environment();
+        $data['eyewitness_config'] = Config::get('eye::config');
 
         if (Config::get('eye::monitor_database')) {
             $data['db_stats'] = $this->database()->check();

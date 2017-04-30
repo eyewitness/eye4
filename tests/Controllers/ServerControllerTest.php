@@ -73,7 +73,7 @@ class ServerControllerTest extends TestCase
 
         $response = $this->call('GET', $this->api.'server'.$this->auth);
 
-        $this->assertEquals(json_encode(['server_stats' => ['php' => 'example'], 'eyewitness_version' => Eye::EYE_VERSION]), $response->getContent());
+        $this->assertEquals(json_encode(['server_stats' => ['php' => 'example'], 'eyewitness_version' => Eye::EYE_VERSION, 'application_environment' => 'testing', 'eyewitness_config' => Config::get('eye::config')]), $response->getContent());
         $this->assertEquals(200, $response->getStatusCode());
     }
 
@@ -92,7 +92,7 @@ class ServerControllerTest extends TestCase
 
         $response = $this->call('GET', $this->api.'server'.$this->auth);
 
-        $this->assertEquals(json_encode(['server_stats' => ['php' => 'example'], 'eyewitness_version' => Eye::EYE_VERSION]), $response->getContent());
+        $this->assertEquals(json_encode(['server_stats' => ['php' => 'example'], 'eyewitness_version' => Eye::EYE_VERSION, 'application_environment' => 'testing', 'eyewitness_config' => Config::get('eye::config')]), $response->getContent());
         $this->assertEquals(200, $response->getStatusCode());
     }
 
@@ -111,7 +111,7 @@ class ServerControllerTest extends TestCase
 
         $response = $this->call('GET', $this->api.'server'.$this->auth);
 
-        $this->assertEquals(json_encode(['server_stats' => ['php' => 'example'], 'eyewitness_version' => Eye::EYE_VERSION, 'queue_stats' => ['list']]), $response->getContent());
+        $this->assertEquals(json_encode(['server_stats' => ['php' => 'example'], 'eyewitness_version' => Eye::EYE_VERSION, 'application_environment' => 'testing', 'eyewitness_config' => Config::get('eye::config'), 'queue_stats' => ['list']]), $response->getContent());
         $this->assertEquals(200, $response->getStatusCode());
     }
 
@@ -130,7 +130,7 @@ class ServerControllerTest extends TestCase
 
         $response = $this->call('GET', $this->api.'server'.$this->auth);
 
-        $this->assertEquals(json_encode(['server_stats' => ['php' => 'example'], 'eyewitness_version' => Eye::EYE_VERSION, 'db_stats' => ['db_status' => true]]), $response->getContent());
+        $this->assertEquals(json_encode(['server_stats' => ['php' => 'example'], 'eyewitness_version' => Eye::EYE_VERSION, 'application_environment' => 'testing', 'eyewitness_config' => Config::get('eye::config'), 'db_stats' => ['db_status' => true]]), $response->getContent());
         $this->assertEquals(200, $response->getStatusCode());
     }
 
@@ -149,7 +149,7 @@ class ServerControllerTest extends TestCase
 
         $response = $this->call('GET', $this->api.'server'.$this->auth);
 
-        $this->assertEquals(json_encode(['server_stats' => ['php' => 'example'], 'eyewitness_version' => Eye::EYE_VERSION, 'request_stats' => ['count' => 5]]), $response->getContent());
+        $this->assertEquals(json_encode(['server_stats' => ['php' => 'example'], 'eyewitness_version' => Eye::EYE_VERSION, 'application_environment' => 'testing', 'eyewitness_config' => Config::get('eye::config'), 'request_stats' => ['count' => 5]]), $response->getContent());
         $this->assertEquals(200, $response->getStatusCode());
     }
 
@@ -168,7 +168,7 @@ class ServerControllerTest extends TestCase
 
         $response = $this->call('GET', $this->api.'server'.$this->auth);
 
-        $this->assertEquals(json_encode(['server_stats' => ['php' => 'example'], 'eyewitness_version' => Eye::EYE_VERSION, 'disk_stats' => ['size' => 7]]), $response->getContent());
+        $this->assertEquals(json_encode(['server_stats' => ['php' => 'example'], 'eyewitness_version' => Eye::EYE_VERSION, 'application_environment' => 'testing', 'eyewitness_config' => Config::get('eye::config'), 'disk_stats' => ['size' => 7]]), $response->getContent());
         $this->assertEquals(200, $response->getStatusCode());
     }
 
@@ -187,7 +187,7 @@ class ServerControllerTest extends TestCase
 
         $response = $this->call('GET', $this->api.'server'.$this->auth);
 
-        $this->assertEquals(json_encode(['server_stats' => ['php' => 'example'], 'eyewitness_version' => Eye::EYE_VERSION, 'log_stats' => ['tests' => 'ok']]), $response->getContent());
+        $this->assertEquals(json_encode(['server_stats' => ['php' => 'example'], 'eyewitness_version' => Eye::EYE_VERSION, 'application_environment' => 'testing', 'eyewitness_config' => Config::get('eye::config'), 'log_stats' => ['tests' => 'ok']]), $response->getContent());
         $this->assertEquals(200, $response->getStatusCode());
     }
 }
