@@ -46,30 +46,30 @@ class InstallCommand extends Command
 
         $this->displayInitialInstallMessage();
 
-        // $this->call('config:publish', ['package' => 'eyewitness/eye4']);
+        $this->call('config:publish', ['package' => 'eyewitness/eye4']);
 
         try {
             $this->setDefaultQueueConfig();
         } catch (Exception $e) {
-            return $this->failedInstallation('queue configuration', $e->getMessage());
+            return $this->failedInstallation('queue configuration', $e);
         }
 
         try {
             $app = $this->eye->runAllChecks(false);
         } catch (Exception $e) {
-            return $this->failedInstallation('application data', $e->getMessage());
+            return $this->failedInstallation('application data', $e);
         }
 
         try {
             $keys = $this->eye->api()->install($app);
         } catch (Exception $e) {
-            return $this->failedInstallation('API installation', $e->getMessage());
+            return $this->failedInstallation('API installation', $e);
         }
 
         try {
             $this->setTokenAndKey($keys);
         } catch (Exception $e) {
-            return $this->failedInstallation('set Token & Keys', $e->getMessage());
+            return $this->failedInstallation('set Token & Keys', $e);
         }
 
         $this->displayOutcome();
@@ -209,11 +209,14 @@ class InstallCommand extends Command
      * @param  string  $error
      * @return void
      */
-    protected function failedInstallation($type, $error)
+    protected function failedInstallation($type, $exception)
     {
-        $this->error('There was an error when trying to install your application. This occured during the '.$type.' process with an error of: '.$error);
+        $this->error('There was an error when trying to install your application during the '.$type.' process.');
+        $this->error('Exception: '.$exception->getMessage());
+        $this->error('Line: '.$exception->getLine());
+        $this->error('File: '.$exception->getFile());
         $this->error('');
-        $this->error('Please try again or contact us at: "support@eyewitness.io"');
+        $this->error('Please try again or contact us at: "support@eyewitness.io" with a copy of the exception data above and we will get back to you ASAP with a solution.');
     }
 
 }
