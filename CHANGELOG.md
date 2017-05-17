@@ -1,5 +1,17 @@
 # Release Notes
 
+
+## v1.1.2 (2017-05-17)
+
+### Fixed
+- Allow for PDOs that only return as arrays for database checking
+
+### Changed
+- Provide better installation debug information during installation failures
+- Improve Guzzle version testing
+- Improve database checking error tracking
+
+
 ## v1.1.1 (2017-05-02)
 
 ### Fixed

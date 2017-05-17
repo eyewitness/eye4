@@ -98,6 +98,6 @@ class LatestApi extends Api
     protected function isRunningGuzzle5()
     {
         $client = get_class($this->client);
-        return ($client::VERSION[0] == "5");
+        return version_compare($client::VERSION, '6.0.0', "<");
     }
 }
