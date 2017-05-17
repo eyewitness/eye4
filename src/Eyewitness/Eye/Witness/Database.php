@@ -52,7 +52,7 @@ class Database
                 return $this->checkPostgresDatabaseSize();
         }
 
-        return 0;
+        return -1;
     }
 
     /**
@@ -63,15 +63,15 @@ class Database
     protected function checkMySqlDatabaseSize()
     {
         try {
-            $result = DB::table('information_schema.TABLES')
-                        ->select(DB::raw("sum( data_length + index_length ) AS size"))
-                        ->where('table_schema', DB::getConfig('database'))
-                        ->first();
-        } catch (Exception $e) {
-            return 0;
-        }
+            $result = (array) DB::table('information_schema.TABLES')
+                                ->select(DB::raw("sum( data_length + index_length ) AS size"))
+                                ->where('table_schema', DB::getConfig('database'))
+                                ->first();
 
-        return $result->size ?: 0;
+            return $result['size'];
+        } catch (Exception $e) {
+            return -1;
+        }
     }
 
     /**
@@ -81,18 +81,16 @@ class Database
      **/
     protected function checkSqLiteDatabaseSize()
     {
-        $db_size = 0;
-
         try {
             $path = realpath(DB::getConfig('database'));
             if ($path !== false) {
-                $db_size = filesize($path);
+                return filesize($path);
             }
         } catch (Exception $e) {
             //
         }
 
-        return $db_size;
+        return -1;
     }
 
     /**
@@ -104,10 +102,10 @@ class Database
     {
         try {
             $result = DB::select(DB::raw("select pg_database_size('".DB::getConfig('database')."')"));
+            $result = (array) $result[0];
+            return $result['pg_database_size'];
         } catch (Exception $e) {
-            return 0;
+            return -1;
         }
-
-        return $result[0]->pg_database_size;
     }
 }
