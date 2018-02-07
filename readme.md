@@ -1,6 +1,8 @@
 <p align="center"><a href="https://eyewitness.io" target="_blank"><img width="200"src="https://eyewitness.io/img/logo/package.png"></a></p>
 
-## Eyewitness.io package for Laravel 4.2 applications
+## Eyewitness.io Legacy package for Laravel 4.2 applications
+
+*This is a legacy pacakge for the original Eyewitness. A new version for Laraverl 4 is coming shortly to work with the new Eyewitness v3*
 
 <a href="https://eyewitness.io">Eyewitness.io</a> is a monitoring and application analytic solution focused specifically for Laravel. Know how your applications are *actually* performing. Monitor uptime, queues, cron schedules, email, logs, security, SSL, DNS and much more. Super simple installation - be up and running in just 90 seconds...
 
